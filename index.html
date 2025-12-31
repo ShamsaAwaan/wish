@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday MY Dear Bestie 💖</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffb6c1,#ffc0cb,#ffe4e1,#fbc2eb);
+font-family:'Poppins','Segoe UI',sans-serif;
+overflow:hidden;
+}
+
+.container{
+text-align:center;
+padding:15px;
+position:relative;
+max-width:100%;
+}
+
+.hint{
+margin-top:20px;
+font-size:18px;
+color:#ff2f92;
+font-weight:600;
+animation:glow 1.5s infinite;
+}
+
+.heart{
+width:140px;
+height:140px;
+background:linear-gradient(45deg,#ff4d6d,#ff85a2);
+position:relative;
+transform:rotate(-45deg);
+cursor:pointer;
+animation:beat 1s infinite;
+margin:auto;
+}
+
+.heart::before,.heart::after{
+content:"";
+width:140px;
+height:140px;
+background:linear-gradient(45deg,#ff4d6d,#ff85a2);
+border-radius:50%;
+position:absolute;
+}
+.heart::before{top:-70px;}
+.heart::after{left:70px;}
+
+@keyframes beat{
+0%,100%{transform:scale(1) rotate(-45deg);}
+50%{transform:scale(1.15) rotate(-45deg);}
+}
+@keyframes glow{50%{opacity:.6}}
+
+.message{
+display:none;
+background:#fff;
+padding:25px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(255,105,135,.35);
+max-width:380px;
+animation:fadeIn 1s;
+}
+
+.message h1{
+color:#ff4d6d;
+font-size:28px;
+}
+
+.message p{
+font-size:16px;
+line-height:1.6;
+}
+
+.cake{
+margin-top:15px;
+font-size:48px;
+cursor:pointer;
+position:relative;
+}
+
+.candle{
+position:absolute;
+top:-22px;
+left:50%;
+transform:translateX(-50%);
+width:7px;
+height:18px;
+background:#ffb703;
+border-radius:4px;
+}
+.flame{
+position:absolute;
+top:-12px;
+left:50%;
+transform:translateX(-50%);
+width:12px;
+height:12px;
+background:radial-gradient(circle,#ffd166,#ff7b00);
+border-radius:50%;
+animation:flicker .2s infinite alternate;
+}
+
+.final-wish{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#ffefff;
+padding:25px;
+border-radius:25px;
+font-size:20px;
+color:#ff2f92;
+text-align:center;
+z-index:10;
+}
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+background:red;
+top:-10px;
+animation:fall 3s linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+@keyframes fadeIn{
+from{opacity:0;transform:scale(.9);}
+to{opacity:1;transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<div class="heart" onclick="openWish()"></div>
+<div class="hint">✨ Tap the heart ✨</div>
+
+<div id="message" class="message">
+<h1>🎀 Happy Birthday <span id="name"></span> 🎂</h1>
+<p>
+You are not just my best friend,<br>
+you are my <strong>MY Dear Bestie</strong> 💕<br><br>
+May your life be full of love, success & smiles 🌈
+</p>
+
+<div class="cake" onclick="celebrate()">
+🎂
+<div class="candle"><div class="flame"></div></div>
+</div>
+<p>✨ Make a wish ✨</p>
+
+<audio id="music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c6a6b4d58.mp3"></audio>
+</div>
+
+<div id="finalWish" class="final-wish">
+💖 From your beautiful sister Shamsa 😉
+</div>
+</div>
+
+<script>
+let bestieName="";
+
+function openWish(){
+bestieName=prompt("Enter your bestie's name 💖","My Bestie");
+if(!bestieName) bestieName="My Bestie";
+document.getElementById("name").innerText=bestieName;
+document.querySelector(".heart").style.display="none";
+document.querySelector(".hint").style.display="none";
+document.getElementById("message").style.display="block";
+document.getElementById("music").play();
+}
+
+function celebrate(){
+document.getElementById("finalWish").style.display="block";
+for(let i=0;i<60;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+c.style.animationDuration=(2+Math.random()*2)+"s";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+</script>
+</body>
+</html>
